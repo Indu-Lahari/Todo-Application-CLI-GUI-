@@ -9,11 +9,13 @@ box = FreeSimpleGUI.Listbox(values=functions.get_todos(), key="list_of_todos",
 add_button = FreeSimpleGUI.Button("Add")
 edit_button = FreeSimpleGUI.Button("Edit")
 complete_button = FreeSimpleGUI.Button("Complete")
+exit_button = FreeSimpleGUI.Button("Exit")
 
 window = FreeSimpleGUI.Window('To-Do Application',
                               layout=[[label],
                                       [input_box, add_button],
-                                      [box, edit_button]],
+                                      [box, edit_button, complete_button],
+                                      [exit_button]],
                               font=('Helvetica', 10))
 
 while True:
@@ -34,6 +36,17 @@ while True:
             todos[index] = new_todo
             functions.write_todos(todos)
             window['list_of_todos'].update(values=todos)
+
+        case "Complete":
+            todo_to_complete = values['list_of_todos'][0]
+            todos = functions.get_todos()
+            todos.remove(todo_to_complete)
+            functions.write_todos(todos)
+            window['list_of_todos'].update(values=todos)
+            window['todo'].update(value='')
+
+        case "Exit":
+            break
 
         case 'todos':
             window['todo'].update(value=values['todos'][0])
