@@ -2,12 +2,14 @@ import functions
 import FreeSimpleGUI
 import time
 
+FreeSimpleGUI.theme("GreenTan")
+
 clock = FreeSimpleGUI.Text('', key='clock')
 
 label = FreeSimpleGUI.Text("Type a To-Do")
 input_box = FreeSimpleGUI.InputText(tooltip="Enter todo", key="todo")
 box = FreeSimpleGUI.Listbox(values=functions.get_todos(), key="list_of_todos",
-                            enable_events=True, size=[35,10])
+                            enable_events=True, size=[45,10])
 
 add_button = FreeSimpleGUI.Button("Add")
 edit_button = FreeSimpleGUI.Button("Edit")
