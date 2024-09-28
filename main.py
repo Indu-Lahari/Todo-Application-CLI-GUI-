@@ -1,5 +1,6 @@
-def get_todos():
-    with open('todos.txt', 'r') as file_local:
+# Parameter in function
+def get_todos(filepath):
+    with open(filepath, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
 
@@ -12,7 +13,8 @@ while True:
         # List Slicing
         todo = user_action[4:]
 
-        todos = get_todos()
+        # Argument in function calls
+        todos = get_todos('todos.txt')
 
         todos.append(todo + '\n')
 
@@ -20,7 +22,7 @@ while True:
             file.writelines(todos)
 
     elif user_action.startswith('show'):
-        todos = get_todos()
+        todos = get_todos('todos.txt')
 
         # List Comprehension
         # new_todos = [item.strip('\n') for item in todos]
@@ -35,7 +37,7 @@ while True:
             number = int(user_action[5:])
             number = number - 1
 
-            todos = get_todos()
+            todos = get_todos('todos.txt')
 
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo + '\n'
@@ -50,7 +52,7 @@ while True:
         try:
             number = int(user_action[9:])
 
-            todos = get_todos()
+            todos = get_todos('todos.txt')
 
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
